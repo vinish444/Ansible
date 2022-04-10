@@ -1,6 +1,6 @@
 ---
 - name: Hello World!
-  hosts: all
+  hosts: cisco
 
   tasks:
     - name: run show version on remote devices
