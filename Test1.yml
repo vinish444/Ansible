@@ -6,3 +6,6 @@
     - name: run show version on remote devices
       ios_command:
         commands: show version
+    - name: run show version on remote devices
+          ios_command:
+            commands: show ip int brief
