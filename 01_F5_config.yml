@@ -1,0 +1,16 @@
+---
+  - name: Create a VIP, Pool and pool members
+    hosts: F5
+    connection: local
+    tasks:
+      - name: Creating the pool
+        bigip_pool:
+          lb_method: least-connections-member
+          partition: CBM
+          name: Pool_CBM
+          provider:
+            server: 10.0.0.100
+            user: admin
+            password: ICICI1src
+            validate_certs: no
+        delegate_to: localhost
