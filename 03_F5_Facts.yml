@@ -1,0 +1,20 @@
+---
+  - name: Collecting facts
+    hosts: F5
+    connection: local
+    tasks:
+      - name: Collecting all info
+        bigip_device_info:
+          gather_subset:
+            - ltm-pools
+          partition: CBM
+          provider:
+            server: 10.0.0.100
+            user: admin
+            password: ICICI1src
+            validate_certs: no
+        delegate_to: localhost
+        register: all_subset
+      - name: printing all facts
+        debug:
+          msg: "{{all_subset.ansible_facts.ansible_net_ltm_pools[0].name}} {{all_subset.ansible_facts.ansible_net_ltm_pools[1].name}}"

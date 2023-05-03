@@ -1,0 +1,31 @@
+---
+
+  - name: Collecting Facts
+    hosts: F5
+    connection: local
+    vars:
+      provider:
+        server: "{{ server }}"
+        user: "{{ user }}"
+        password: "{{ password }}"
+        validate_certs: no
+    tasks:
+      - name: collecting facts
+        bigip_device_info:
+          gather_subset:
+            - ltm-pools
+          partition: CBM
+          provider: "{{ provider }}"
+        delegate_to: localhost
+        register: all_subset
+      - name: print the pool info
+        debug:
+          var: all_subset
+      - name: print the loop
+        vars:
+         list1: [0,1,2]
+        debug:
+         msg: "{{list1}}"
+        debug:
+         msg: "{{all_subset.ansible_facts.ansible_net_ltm_pools[item].name}}"
+        loop: "{{list1}}"
