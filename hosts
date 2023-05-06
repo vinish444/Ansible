@@ -1,0 +1,21 @@
+[routers]
+R1 ansible_host=10.0.0.130
+R2 ansible_host=10.0.0.120
+[host_key]
+R3 ansible_host=10.0.0.140 ansible_user=cisco ansible_password=/home/vinish/.ssh/id_rsa.pub
+[routers:vars]
+ansible_connection=network_cli
+ansible_network_os=ios
+ansible_user=cisco
+ansible_password=cisco
+[host_key:vars]
+ansible_connection=network_cli
+ansible_network_os=ios
+ansible_user=cisco
+ansible_password=cisco
+[F5]
+F1 ansible_host=10.0.0.100
+[F5:vars]
+server="10.0.0.100"
+user="admin"
+password="ICICI1src"
