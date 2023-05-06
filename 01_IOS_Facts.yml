@@ -1,0 +1,36 @@
+---
+- name: Test IOS Facts
+  hosts: routers
+  tasks:
+    - debug:
+        var: ansible_facts
+    - name: Gather IOS Facts
+      ios_facts:
+        gather_subset: all
+      register: all_subset
+    - name: Print Subset All
+      debug:
+        var: all_subset
+    - name: Gather Hardware Information
+      ios_facts:
+        gather_subset: hardware
+      register: hw
+    - name: Print Hardware Information
+      debug:
+        var: hw
+    - name: Gather interface Information
+      ios_facts:
+        gather_subset: interfaces
+      register: int
+    - name: Print the Interface configuration
+      debug:
+        var: int
+    - name: Gather information without Hardware and interfaces
+      ios_facts:
+        gather_subset:
+        - "!hardware"
+        - "!interfaces"
+      register: hw_int_no
+    - name: Print the information without Hardware and interfaces
+      debug:
+        var: hw_int_no
